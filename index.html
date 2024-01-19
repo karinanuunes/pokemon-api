@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POKEDEX</title>
+    <script src="script.js" defer></script>
+    <script src="type.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Pokémon List</h1>
+    <div id="filtro">
+      <h4>Selecione o tipo do seu Pokemon</h4>
+      <select name="" id="select"></select>
+      <button onclick="filtrarPokemons()" id="buscar">Buscar</button>
+    </div>
+    <div id="pai">
+      <div id="pokemonList">
+        <!-- EXIBIDO PELO JAVASCRIPT -->
+      </div>
+    </div>
+  </body>
+</html>
