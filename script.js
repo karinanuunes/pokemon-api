@@ -32,19 +32,7 @@ function informacoesPokemons(pokemonData) {
   </div>
   <img src="${pokemonData.sprites.front_default}" alt="${
     pokemonData.name
-  }" data-front-dafault="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-    pokemonData.id
-  }.png"
-  }" data-back-dafault="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${
-    pokemonData.id
-  }.png"
-  }" data-front-shiny="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${
-    pokemonData.id
-  }.png"
-  }" data-back-shiny="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${
-    pokemonData.id
-  }.png"
-  />
+  }" class="imgPokemon"/>
   <div class="pokeInfo">
   <p><b>Type:</b> ${types.join(", ")}</p>
   <p><b>Ability:</b> ${abilities}</p>
