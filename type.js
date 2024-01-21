@@ -20,12 +20,12 @@ selecionarTipo();
 async function filtrarPokemons() {
   const select = document.getElementById("select");
 
-  const pai = document.getElementById("pai");
-  pai.innerHTML = "";
+  const pokemonContainer = document.getElementById("pokemonContainer");
+  pokemonContainer.innerHTML = "";
   await timeOut();
   const pokemonList = document.createElement("div");
   pokemonList.id = "pokemonList";
-  pai.appendChild(pokemonList);
+  pokemonContainer.appendChild(pokemonList);
   console.log(select.value);
 
   fetchPokemonData(select.value);
@@ -34,7 +34,7 @@ async function filtrarPokemons() {
 async function showLoadingText(dots) {
   const loadingText = document.createElement("div");
   loadingText.textContent = `Carregando${".".repeat(dots)}`;
-  document.getElementById("pai").appendChild(loadingText);
+  document.getElementById("pokemonContainer").appendChild(loadingText);
 
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -54,18 +54,46 @@ async function galeriaImagens() {
   const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=30");
   const data = await response.json();
 
-  data.results.forEach(async (element) => {
-    const resp = await fetch(element.url);
-    const poke = await resp.json();
+  const imgPokemonClass = document.getElementsByClassName("imgPokemon");
 
-    const image = document.getElementById("image");
-    const url = image.getAttribute("data-front-default");
+  data.results.forEach(async (pokemon, index) => {
+    const pokemonResponse = await fetch(pokemon.url);
+    const pokemonData = await pokemonResponse.json();
 
-    const images = [
-      image.getAttribute("data-front-default"),
-      image.getAttribute("data-back-default"),
-      image.getAttribute("data-front-shiny"),
-      image.getAttribute("data-back-shiny"),
-    ];
+    const frontDefault = pokemonData.sprites.front_default;
+    const backDefault = pokemonData.sprites.back_default;
+    const frontShiny = pokemonData.sprites.front_shiny;
+    const backShiny = pokemonData.sprites.back_shiny;
+
+    const images = [];
+    images.push(frontDefault, backDefault, frontShiny, backShiny);
+
+    const imgPokemon = imgPokemonClass[index];
+    imgPokemon.setAttribute("data-front-default", frontDefault);
+    imgPokemon.setAttribute("data-back-default", backDefault);
+    imgPokemon.setAttribute("data-front-shiny", frontShiny);
+    imgPokemon.setAttribute("data-back-shiny", backShiny);
+    // imgPokemon.src = backDefault; // Teste OK
+
+    const pokemonClass = document.getElementsByClassName("pokemon")[index];
+    const voltBotao = document.createElement("button");
+    voltBotao.classList.add("voltBotao");
+    voltBotao.textContent = "<";
+    pokemonClass.appendChild(voltBotao);
+
+    voltBotao.addEventListener("click", () => {
+      imgPokemon.src = backDefault;
+    });
+
+    const proxBotao = document.createElement("button");
+    proxBotao.classList.add("proxBotao");
+    proxBotao.textContent = ">";
+    pokemonClass.appendChild(proxBotao);
+
+    proxBotao.addEventListener("click", () => {
+      imgPokemon.src = frontShiny;
+    });
   });
 }
+
+galeriaImagens();
