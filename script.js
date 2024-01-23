@@ -30,13 +30,17 @@ function informacoesPokemons(pokemonData) {
   <h2>${pokemonData.name}</h2>
   <span>ID: ${pokemonData.id}</span>
   </div>
+  <div class="pokeImages">
+  <button id="voltBotao"><</button>
   <img src="${pokemonData.sprites.front_default}" alt="${
     pokemonData.name
   }" class="imgPokemon"/>
+  <button id="proxBotao">></button>
+  </div>
   <div class="pokeInfo">
   <p><b>Type:</b> ${types.join(", ")}</p>
   <p><b>Ability:</b> ${abilities}</p>
-  </div<
+  </div>
   `;
 
   pokemonList.appendChild(pokemon);
