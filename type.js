@@ -40,7 +40,7 @@ async function showLoadingText(dots) {
     setTimeout(() => {
       loadingText.remove();
       resolve();
-    }, 1000);
+    }, 800);
   });
 }
 
@@ -49,3 +49,7 @@ async function timeOut() {
   await showLoadingText(2);
   await showLoadingText(3);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  timeOut();
+});
