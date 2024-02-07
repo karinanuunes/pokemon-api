@@ -19,7 +19,7 @@ function informacoesPokemons(pokemonData) {
   const pokemon = document.createElement("div");
   pokemon.classList.add("pokemon");
   pokemon.classList.add(pokemonData.name);
-  pokemon.id = pokemonData.id;
+  // pokemon.id = pokemonData.id;
 
   const types = pokemonData.types.map((type) => type.type.name);
   const abilities = pokemonData.abilities
@@ -37,7 +37,7 @@ function informacoesPokemons(pokemonData) {
   })"><</button>
   <img src="${pokemonData.sprites.front_default}" alt="${
     pokemonData.name
-  }" class="imgPokemon"/>
+  }" class="imgPokemon"  id=${pokemonData.id}>
   <button id="proxBotao" onclick="trocarImagem(1, ${pokemonData.id})">></button>
   </div>
   <div class="pokeInfo">

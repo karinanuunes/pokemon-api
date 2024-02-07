@@ -13,7 +13,7 @@ async function capturarPokemon() {
 }
 
 function galeria(pokemon) {
-  const divPokemon = document.querySelector(".pokeImages");
+  const divPokemon = document.querySelector(".imgPokemon");
   const frontDefault = pokemon.sprites.front_default;
   const backDefault = pokemon.sprites.back_default;
   const frontShiny = pokemon.sprites.front_shiny;
@@ -27,13 +27,11 @@ function galeria(pokemon) {
 }
 
 function trocarImagem(posicao, id) {
-  debugger;
   const cardSelecionado = document.getElementById(id);
   const cardSelecionadoInicio = Number(
     cardSelecionado.getAttribute("data-image-index")
   );
 
-  // Ele não está conseguindo selecionar a imagem aqui
   const images = [
     cardSelecionado.getAttribute("data-front-default"),
     cardSelecionado.getAttribute("data-back-default"),
@@ -41,19 +39,19 @@ function trocarImagem(posicao, id) {
     cardSelecionado.getAttribute("data-back-shiny"),
   ];
 
-  let proximo = cardSelecionadoInicio + posicao;
+  let proxIndex = cardSelecionadoInicio + posicao;
 
-  if (proximo < 0) {
-    proximo = images.length - 1;
-  } else if (proximo >= images.length) {
-    proximo = 0;
+  // tudo em cima está testado
+  // não está entrando no IF
+  if (proxIndex < 0) {
+    proxIndex = images.length - 1;
+  } else if (proxIndex >= images.length) {
+    proxIndex = 0;
   }
 
-  debugger;
-  cardSelecionado.setAttribute("data-image-index", proximo);
+  cardSelecionado.setAttribute("data-image-index", proxIndex); // está dando undefined
   const pokemonImage = cardSelecionado.querySelector(".imgPokemon");
-  pokemonImage.src = images[proximo];
-  debugger;
+  pokemonImage.src = images[proxIndex]; // está dando null
 }
 
 capturarPokemon();
