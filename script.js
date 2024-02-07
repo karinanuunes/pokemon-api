@@ -18,7 +18,8 @@ function informacoesPokemons(pokemonData) {
   const pokemonList = document.getElementById("pokemonList");
   const pokemon = document.createElement("div");
   pokemon.classList.add("pokemon");
-  pokemon.id = pokemonData.name;
+  pokemon.classList.add(pokemonData.name);
+  pokemon.id = pokemonData.id;
 
   const types = pokemonData.types.map((type) => type.type.name);
   const abilities = pokemonData.abilities
@@ -31,11 +32,13 @@ function informacoesPokemons(pokemonData) {
   <span>ID: ${pokemonData.id}</span>
   </div>
   <div class="pokeImages">
-  <button id="voltBotao"><</button>
+  <button id="voltBotao" onclick="trocarImagem(-1, ${
+    pokemonData.id
+  })"><</button>
   <img src="${pokemonData.sprites.front_default}" alt="${
     pokemonData.name
   }" class="imgPokemon"/>
-  <button id="proxBotao">></button>
+  <button id="proxBotao" onclick="trocarImagem(1, ${pokemonData.id})">></button>
   </div>
   <div class="pokeInfo">
   <p><b>Type:</b> ${types.join(", ")}</p>
